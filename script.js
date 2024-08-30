@@ -33,7 +33,7 @@ function datosRecetaFormulario() {
 
 
 function guardarReceta(recipe) {
-    const recipes = getRecipesFromStorage();
+    const recipes = bajarInfoStorage();
     recipes.push(recipe);
     localStorage.setItem('recipes', JSON.stringify(recipes));
     listarRecetas();
@@ -41,7 +41,7 @@ function guardarReceta(recipe) {
 }
 
 
-function getRecipesFromStorage() {
+function bajarInfoStorage() {
     return JSON.parse(localStorage.getItem('recipes')) || [];
 }
 
@@ -52,7 +52,7 @@ function cargarRecetas() {
 
 
 function listarRecetas() {
-    const recipes = getRecipesFromStorage();
+    const recipes = bajarInfoStorage();
     recipeList.innerHTML = '';  
 
     recipes.forEach((recipe, index) => {
@@ -73,7 +73,7 @@ function listarRecetas() {
 
 
 function eliminarReceta(index) {
-    const recipes = getRecipesFromStorage();
+    const recipes = bajarInfoStorage();
     recipes.splice(index, 1);  
     localStorage.setItem('recipes', JSON.stringify(recipes));
     listarRecetas();
@@ -82,7 +82,7 @@ function eliminarReceta(index) {
 
 
 function editarReceta(index) {
-    const recipes = getRecipesFromStorage();
+    const recipes = bajarInfoStorage();
     const recipe = recipes[index];
     
     document.getElementById('recipe-name').value = recipe.name;
@@ -99,7 +99,7 @@ function editarReceta(index) {
 
 function searchRecipes() {
     const query = searchBar.value.toLowerCase();
-    const recipes = getRecipesFromStorage();
+    const recipes = bajarInfoStorage();
 
     const filteredRecipes = recipes.filter(recipe => 
         recipe.name.toLowerCase().includes(query) ||
