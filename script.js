@@ -13,7 +13,7 @@ recipeForm.addEventListener('submit', (event) => {
 });
 
 
-searchBar.addEventListener('input', searchRecipes);
+searchBar.addEventListener('input', buscarReceta);
 
 
 function datosRecetaFormulario() {
@@ -97,7 +97,7 @@ function editarReceta(index) {
 }
 
 
-function searchRecipes() {
+function buscarReceta() {
     const query = searchBar.value.toLowerCase();
     const recipes = bajarInfoStorage();
 
@@ -107,11 +107,11 @@ function searchRecipes() {
         recipe.instructions.toLowerCase().includes(query)
     );
 
-    displayFilteredRecipes(filteredRecipes);
+    filtrarRecetas(filteredRecipes);
 }
 
 
-function displayFilteredRecipes(recipes) {
+function filtrarRecetas(recipes) {
     recipeList.innerHTML = '';  
 
     recipes.forEach((recipe, index) => {
